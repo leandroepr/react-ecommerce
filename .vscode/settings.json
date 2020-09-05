@@ -1,0 +1,20 @@
+{
+  "[javascriptreact]": {
+    "editor.formatOnSave": true
+  },
+  "[typescriptreact]": {
+    "editor.formatOnSave": true
+  },
+  "prettier.arrowParens": "avoid",
+  "prettier.jsxSingleQuote": true,
+  "editor.formatOnSave": true,
+  "colorize.languages": [
+    "javascript",
+    "typescript",
+    "javascriptreact",
+    "typescriptreact",
+    "json",
+    "html",
+    "css"
+  ]
+}
