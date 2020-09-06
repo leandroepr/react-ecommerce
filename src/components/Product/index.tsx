@@ -58,6 +58,8 @@ const WarrantySection: React.FC = () => {
           <p className="description">Sem Garantia</p>
         </span>
       </div>
+
+      <a href="#">Saiba mais sobre garantia</a>
     </Section>
   );
 };
@@ -75,12 +77,21 @@ const Info: React.FC = () => {
         <br />
         <br />
         Características: <br />
+        Elemento 1x <br />
+        Elemento 1x <br />
+        Elemento 1x <br />
+        Elemento 1x <br />
+        Elemento 1x <br />
         Sed a posuere velit. Morbi et ornare felis. Vestibulum convallis id nisl
         non tristique. Nullam vestibulum elementum lorem in gravida. Phasellus
         felis ex, semper et arcu vitae, dapibus feugiat mi. Lorem ipsum dolor
         sit amet, consectetur adipiscing elit. Quisque ullamcorper vel sem eu
         porta. Praesent at sapien nibh. Fusce vel nulla nec orci mattis
-        malesuada. Mauris in dapibus leo.
+        malesuada. Mauris in dapibus leo. Lorem ipsum dolor sit amet,
+        consectetur adipiscing elit. Pellentesque eu tempus diam. Proin
+        condimentum tellus nisi, eget egestas augue laoreet vitae. Fusce eu
+        nulla sit amet odio laoreet placerat. Nullam volutpat nunc id nibh
+        congue viverra. Fusce pharetra cursus felis id dapibus.
       </p>
     </Description>
   );
