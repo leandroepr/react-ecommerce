@@ -11,6 +11,7 @@ import {
   Section,
   Description,
 } from './styles';
+import SellerInfo from '../SellerInfo';
 
 const Product: React.FC = () => {
   return (
@@ -29,8 +30,8 @@ const Product: React.FC = () => {
         </Column>
 
         <Column>
-          {/* <ProductAction />
-          <SellerInfo /> */}
+          {/* <ProductAction /> */}
+          <SellerInfo />
 
           <WarrantySection />
           <WarrantySection />
