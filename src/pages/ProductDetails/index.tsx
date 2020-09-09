@@ -1,11 +1,11 @@
 import React from 'react';
 
 import { Container, Wrapper } from './styles';
-import Product from '../Product';
-import Header from '../Header';
-import Footer from '../Footer';
+import Product from './Product';
+import Header from '../../components/Header';
+import Footer from '../../components/Footer';
 
-const Layout: React.FC = () => {
+const ProductDetails: React.FC = () => {
   return (
     <Container>
       <Header />
@@ -19,4 +19,4 @@ const Layout: React.FC = () => {
   );
 };
 
-export default Layout;
+export default ProductDetails;

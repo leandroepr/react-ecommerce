@@ -2,12 +2,12 @@ import React from 'react';
 
 import { Container } from './styles';
 
-function Header() {
+const Cart: React.FC = () => {
   return (
     <Container>
-      <span>Header</span>
+      <h1>Cart</h1>
     </Container>
   );
-}
+};
 
-export default Header;
+export default Cart;

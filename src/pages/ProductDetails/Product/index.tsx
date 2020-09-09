@@ -1,6 +1,6 @@
 import React from 'react';
 
-import tshirtImage from '../../assets/tshirt.png';
+import tshirtImage from '../../../assets/images/tshirt.png';
 
 import {
   Container,
