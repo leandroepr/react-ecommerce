@@ -1,21 +1,17 @@
 import React from 'react';
 
-import { Container, Wrapper } from './styles';
 import Product from './Product';
-import Header from '../../components/Header';
+import PagePattern from '../../components/PagePattern';
 import Footer from '../../components/Footer';
+import Header from '../../components/Header';
 
 const ProductDetails: React.FC = () => {
   return (
-    <Container>
-      <Header />
-
-      <Wrapper>
-        <Product />
-      </Wrapper>
-
-      <Footer />
-    </Container>
+    <PagePattern
+      headerContent={<Header />}
+      bodyContent={<Product />}
+      footerContent={<Footer />}
+    />
   );
 };
 

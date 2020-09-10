@@ -4,93 +4,172 @@ import {
   HiOutlineUserCircle,
   HiOutlineShoppingCart,
   HiOutlineSearch,
+  HiOutlineBell,
+  HiOutlineLocationMarker,
 } from 'react-icons/hi';
+import { FiShoppingBag, FiZap } from 'react-icons/fi';
 
 export const Container = styled.div`
-  width: 100%;
-  background: var(--color-header);
-  border-bottom: 1px solid var(--color-border);
+  display: grid;
+  grid-template-areas:
+    'logo search offer'
+    'address navigation profile';
+  grid-template-columns: 150px 1fr 320px;
+  grid-template-rows: 39px 26px;
+  grid-gap: 8px 32px;
 
-  display: flex;
-  flex-direction: column;
+  padding: 8px 0 10px;
 `;
 
-export const Warpper = styled.div`
-  display: flex;
-  max-width: 1220px;
-  width: 100%;
-  margin: 0 auto;
-  padding: 0 16px;
-`;
-
-export const Column = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  padding: 16px 0;
-`;
-
-export const Row = styled.div`
+export const LogoWarpper = styled.div`
+  grid-area: logo;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   align-items: center;
-`;
 
-export const Logo = styled.div`
-  font-size: 25px;
   font-weight: bold;
-  color: var(--color-gray);
+  color: var(--color-emphasis);
+
+  font-variant-caps: all-petite-caps;
+  font-size: 18px;
+  line-height: 15px;
+
+  > div {
+    margin-left: 10px;
+    > p + p {
+      letter-spacing: 6px;
+      font-weight: 400;
+    }
+  }
 `;
 
-export const SearchBar = styled.div`
+export const SearchWrapper = styled.div`
+  grid-area: search;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+
+  > input {
+    width: 100%;
+    height: 39px;
+    padding: 0 42px 0 16px;
+
+    font-size: 14px;
+    color: var(--color-gray);
+    background: var(--color-white);
+
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    box-shadow: var(--input-shadow);
+
+    outline: 0;
+
+    &::placeholder {
+      color: var(--color-search-placeholder);
+    }
+
+    ~ svg {
+      position: absolute;
+      color: var(--color-gray);
+      top: 10px;
+      right: 10px;
+
+      padding-left: 10px;
+      border-left: 1px solid var(--color-border);
+
+      transition: 180ms ease-in-out;
+
+      cursor: pointer;
+      &:hover {
+        color: var(--color-blue);
+      }
+    }
+
+    &:focus {
+      border: 1px solid var(--color-blue);
+
+      ~ svg {
+        color: var(--color-blue);
+      }
+    }
+  }
+`;
+
+export const OfferWarpper = styled.div`
+  grid-area: offer;
   display: flex;
   flex-direction: row;
   align-items: center;
-  background: var(--color-white);
-  width: 50%;
+  justify-content: space-between;
 
-  border: 1px solid var(--color-border);
-  box-shadow: var(--input-shadow);
-  border-radius: 4px;
-
-  position: relative;
-  > input {
-    padding: 0 42px 0 16px;
-    height: 30px;
-    width: 100%;
-
-    color: var(--color-gray);
-    outline-color: var(--color-border);
-  }
-`;
-
-export const SearchIcon = styled(HiOutlineSearch)`
-  position: absolute;
-  width: 30px;
-  height: 20px;
   color: var(--color-gray);
-  top: 5px;
-  right: 10px;
+  > span {
+    margin-left: 5px;
+  }
+  /* background: yellow; */
+`;
 
-  padding-left: 10px;
-  border-left: 1px solid var(--color-border);
+export const AddressWarpper = styled.div`
+  grid-area: address;
+  /* background: purple; */
 
-  cursor: pointer;
-  &:hover {
-    color: var(--color-blue);
+  display: flex;
+  flex-direction: row;
+
+  font-size: 10px;
+  color: var(--color-gray);
+  > div {
+    margin-left: 5px;
+
+    overflow: hidden;
+    > p {
+      font-size: 11px;
+      font-weight: 300;
+      text-overflow: ellipsis;
+    }
+    > strong {
+      text-overflow: ellipsis;
+    }
   }
 `;
 
-export const ProfileData = styled.div`
+export const NavigationWarpper = styled.nav`
+  grid-area: navigation;
   display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  > span {
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--color-gray);
+
+    cursor: pointer;
+    margin-right: 32px;
+
+    &:hover {
+      color: var(--color-blue);
+    }
+  }
+`;
+
+export const ProfileMenuWarpper = styled.div`
+  grid-area: profile;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
   > div {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    align-items: center;
 
     > span {
       font-size: 14px;
+      font-weight: 400;
       color: var(--color-gray);
+      margin: 0 5px;
     }
 
     span + span {
@@ -98,34 +177,47 @@ export const ProfileData = styled.div`
       color: var(--color-gray);
     }
   }
+
+  .more::after {
+    content: '▾';
+    font-size: 18px;
+    margin-left: 2px;
+  }
 `;
 
 const iconCSS = css`
-  width: 30px;
-  height: 30px;
+  width: 24px;
+  height: 24px;
   flex-shrink: 0;
-  font-weight: 100;
   color: var(--color-gray);
+`;
+
+export const SearchIcon = styled(HiOutlineSearch)`
+  width: 30px;
+  height: 20px;
 `;
 
 export const ProfileIcon = styled(HiOutlineUserCircle)`
   ${iconCSS}
-  margin-right: 16px;
+`;
+
+export const LogoIcon = styled(FiShoppingBag)`
+  width: 32px;
+  height: 32px;
+`;
+export const OfferIcon = styled(FiZap)`
+  ${iconCSS}
+`;
+export const LocationIcon = styled(HiOutlineLocationMarker)`
+  ${iconCSS}
+`;
+
+export const NotificationIcon = styled(HiOutlineBell)`
+  ${iconCSS}
+  cursor: pointer;
 `;
 
 export const CartIcon = styled(HiOutlineShoppingCart)`
   ${iconCSS}
-
-  margin-left: 16px;
-  &:hover {
-    color: var(--color-blue);
-  }
   cursor: pointer;
-`;
-
-export const Menu = styled.div`
-  display: flex;
-  width: 100%;
-  flex-direction: row;
-  justify-content: space-between;
 `;

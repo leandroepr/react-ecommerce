@@ -28,7 +28,12 @@ export default createGlobalStyle`
     --color-blue: #3483FA;
     --color-green: #00A650;
 
+    --color-emphasis: #2D3277;
+
     --color-header: #FFF159;
+    --color-body: #F5F5F5;
+    --color-footer: #FFFFFF;
+
     /* --color-header: #2D3277; */
     --color-search-placeholder: #AAAAAA;
     --color-border: #DDD;

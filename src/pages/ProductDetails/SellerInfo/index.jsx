@@ -22,7 +22,7 @@ function SellerInfo() {
         <LocationIcon />
         <div>
           <p>Localização</p>
-          <string>São Paulo, São Paulo</string>
+          <strong>São Paulo, São Paulo</strong>
         </div>
       </LocationCard>
 

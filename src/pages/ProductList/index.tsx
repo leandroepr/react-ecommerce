@@ -1,11 +1,19 @@
 import React from 'react';
 
-import { Container } from './styles';
+import { Container, Wrapper } from './styles';
+import Header from '../../components/Header';
+import Footer from '../../components/Footer';
 
 const ProductList: React.FC = () => {
   return (
     <Container>
-      <h1>Product</h1>
+      <Header />
+
+      <Wrapper>
+        <h1>ProductList</h1>
+      </Wrapper>
+
+      <Footer />
     </Container>
   );
 };

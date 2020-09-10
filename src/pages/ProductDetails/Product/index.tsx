@@ -18,6 +18,7 @@ const Product: React.FC = () => {
   return (
     <Container>
       <Row>
+        <a href="#">Voltar à lista</a>
         <a href="#">Categoria</a>
         <a href="#">Produto</a>
       </Row>
@@ -34,8 +35,6 @@ const Product: React.FC = () => {
           <ProductAction />
           <SellerInfo />
 
-          <WarrantySection />
-          <WarrantySection />
           <WarrantySection />
         </Column>
       </Panel>
