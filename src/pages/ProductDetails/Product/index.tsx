@@ -18,8 +18,8 @@ const Product: React.FC = () => {
   return (
     <Container>
       <Row>
-        <a href="#">Compartilhar</a>
-        <a href="#">Vender um igual</a>
+        <a href="#">Categoria</a>
+        <a href="#">Produto</a>
       </Row>
 
       <Panel>

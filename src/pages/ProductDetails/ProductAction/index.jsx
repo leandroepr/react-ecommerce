@@ -28,7 +28,7 @@ function ProductAction() {
         <HeartIcon />
       </Row>
 
-      <DispatchTag>Enciando normalmente</DispatchTag>
+      <DispatchTag>Enviando normalmente</DispatchTag>
 
       <PriceCard>
         <PriceRow>

@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components';
 
 export default createGlobalStyle`
   * {
@@ -16,18 +16,20 @@ export default createGlobalStyle`
   *, button, input {
     border: 0;
     background: none;
-    font-family: 'Montserrat',--apple-system, 'Helvetica Neue', 'Helvetica', Roboto, Arial, sans-serif;
+    /* font-family: 'Montserrat',--apple-system, 'Helvetica Neue', 'Helvetica', Roboto, Arial, sans-serif; */
+    font-family: ---apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
   }
 
   :root {
     --color-primary: #F5F5F5;
     --color-black: #333;
     --color-white: #FFF;
-    --color-gray: #777;
+    --color-gray: #666;
     --color-blue: #3483FA;
     --color-green: #00A650;
 
     --color-header: #FFF159;
+    /* --color-header: #2D3277; */
     --color-search-placeholder: #AAAAAA;
     --color-border: #DDD;
 
@@ -38,5 +40,6 @@ export default createGlobalStyle`
     --reputation-5: #00A650;
 
     --panel-shadow: 0 1px 3px 0 rgba(0,0,0,.3);
+    --input-shadow: 0 1px 2px 0 rgba(0,0,0,.1);
   }
 `;
