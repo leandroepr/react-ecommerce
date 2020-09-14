@@ -47,6 +47,7 @@ function Header() {
       </AddressWarpper>
 
       <NavigationWarpper>
+        <span>Todos</span>
         <span>Roupas</span>
         <span>Calçados</span>
         <span>Utilitários</span>

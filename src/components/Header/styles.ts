@@ -18,7 +18,7 @@ export const Container = styled.div`
   grid-template-rows: 39px 26px;
   grid-gap: 8px 32px;
 
-  padding: 8px 0 10px;
+  padding: 12px 0px;
 `;
 
 export const LogoWarpper = styled.div`
