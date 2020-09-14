@@ -9,21 +9,28 @@ import {
   PriceRow,
   InstallmentsInfo,
 } from './styles';
+import { Product } from '../categoryContext';
 
-const ProductSmalCard: React.FC = () => {
+const ProductSmalCard: React.FC<Product> = ({
+  imageUrl,
+  imageDescription,
+  priceFraction,
+  priceCents,
+  installmentInfo,
+}) => {
   return (
     <Container>
       <ItemImage>
-        <img src={tshirt} />
+        <img alt={imageDescription} src={imageUrl} />
       </ItemImage>
       <PriceBlock>
         <PriceRow>
           <span className="simbol">R$</span>
-          <span className="fraction">34</span>
-          <span className="cents">99</span>
+          <span className="fraction">{priceFraction}</span>
+          <span className="cents">{priceCents}</span>
         </PriceRow>
 
-        <InstallmentsInfo>3x de R$ 11,67 sem juros</InstallmentsInfo>
+        <InstallmentsInfo>{installmentInfo}</InstallmentsInfo>
       </PriceBlock>
     </Container>
   );

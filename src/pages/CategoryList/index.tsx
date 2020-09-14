@@ -1,18 +1,28 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import PagePattern from '../../components/PagePattern';
 import { Container } from './styles';
 import CategorySection from './CategorySection';
 
+import { CategoryProvider, CategoryContext } from './categoryContext';
+
 const CategoryList: React.FC = () => {
+  const categoryList = useContext(CategoryContext);
   return (
-    <PagePattern>
-      <Container>
-        <CategorySection title="Roupas para você e toda família" />
-        <CategorySection title="Calçados elegantes e confortáveis" />
-        <CategorySection title="Utilitários, Maquiagens e muito mais" />
-      </Container>
-    </PagePattern>
+    <CategoryProvider>
+      <PagePattern>
+        <Container>
+          {categoryList.map((category, index) => (
+            <CategorySection
+              key={index}
+              title={category.title}
+              detailPath={category.detailPath}
+              productList={category.productList}
+            />
+          ))}
+        </Container>
+      </PagePattern>
+    </CategoryProvider>
   );
 };
 
