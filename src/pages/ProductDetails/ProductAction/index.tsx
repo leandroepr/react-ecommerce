@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 
 import {
   Container,
@@ -17,6 +17,7 @@ import {
   Benefits,
   ShieldIcon,
 } from './styles';
+import { ProductDetailsContext } from '../ProductDetailsContext';
 
 interface PriceTag {
   simbol: string;
@@ -34,21 +35,17 @@ interface ProductData {
 }
 
 function ProductAction() {
-  const defaultData: ProductData = {
-    condition: 'Novo',
-    title: 'Camiseta Branca de Marca Desconhecida',
-    price: { simbol: 'R$', fragment: '34', cents: '80' },
-    installmentsInfo: 'em 3x de R$ 11,67',
-    stockAmount: 100,
-    soldAmount: 768,
-  };
-
-  const [productData, setProductData] = useState<ProductData>(defaultData);
-
-  const { title, price, installmentsInfo } = productData;
+  const {
+    title,
+    price,
+    installmentsInfo,
+    stockAmount,
+    condition,
+    soldAmount,
+  } = useContext(ProductDetailsContext);
   const stockStatusLabel =
-    productData.stockAmount > 0 ? 'Estoque disponível' : 'Sem estoque';
-  const conditionLabel = `${productData.condition} | ${productData.soldAmount} vendidos`;
+    stockAmount > 0 ? 'Estoque disponível' : 'Sem estoque';
+  const conditionLabel = `${condition} | ${soldAmount} vendidos`;
 
   return (
     <Container>
