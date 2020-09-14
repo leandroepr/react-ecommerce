@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import {
   Container,
@@ -18,13 +18,44 @@ import {
   ShieldIcon,
 } from './styles';
 
+interface PriceTag {
+  simbol: string;
+  fragment: string;
+  cents: string;
+}
+
+interface ProductData {
+  condition: string;
+  title: string;
+  price: PriceTag;
+  installmentsInfo: string;
+  stockAmount: number;
+  soldAmount: number;
+}
+
 function ProductAction() {
+  const defaultData: ProductData = {
+    condition: 'Novo',
+    title: 'Camiseta Branca de Marca Desconhecida',
+    price: { simbol: 'R$', fragment: '34', cents: '80' },
+    installmentsInfo: 'em 3x de R$ 11,67',
+    stockAmount: 100,
+    soldAmount: 768,
+  };
+
+  const [productData, setProductData] = useState<ProductData>(defaultData);
+
+  const { title, price, installmentsInfo } = productData;
+  const stockStatusLabel =
+    productData.stockAmount > 0 ? 'Estoque disponível' : 'Sem estoque';
+  const conditionLabel = `${productData.condition} | ${productData.soldAmount} vendidos`;
+
   return (
     <Container>
-      <Condition>Novo</Condition>
+      <Condition>{conditionLabel}</Condition>
 
       <Row>
-        <h1>Camiseta Branca de Marca Desconhecida</h1>
+        <h1>{title}</h1>
         <HeartIcon />
       </Row>
 
@@ -32,14 +63,14 @@ function ProductAction() {
 
       <PriceCard>
         <PriceRow>
-          <span className="simbol">R$</span>
-          <span className="fraction">34</span>
-          <span className="cents">99</span>
+          <span className="simbol">{price.simbol}</span>
+          <span className="fraction">{price.fragment}</span>
+          <span className="cents">{price.cents}</span>
         </PriceRow>
 
-        <InstallmentsInfo>em 3x de R$ 11,67</InstallmentsInfo>
+        <InstallmentsInfo>{installmentsInfo}</InstallmentsInfo>
 
-        <StockStatus>Estoque disponível</StockStatus>
+        <StockStatus>{stockStatusLabel}</StockStatus>
 
         <MethodCard>
           <CheckIcon />

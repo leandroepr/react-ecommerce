@@ -13,7 +13,7 @@ import {
   More,
 } from './styles';
 
-function SellerInfo() {
+function SellerInfoCard() {
   return (
     <Container>
       <Title>Informações sobre o vendedor</Title>
@@ -60,4 +60,4 @@ function SellerInfo() {
   );
 }
 
-export default SellerInfo;
+export default SellerInfoCard;

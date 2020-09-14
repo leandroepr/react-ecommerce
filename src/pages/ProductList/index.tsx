@@ -16,11 +16,9 @@ import FilterCard from './FilterCard';
 
 const ProductList: React.FC = () => {
   return (
-    <PagePattern
-      headerContent={<Header />}
-      bodyContent={<Content />}
-      footerContent={<Footer />}
-    />
+    <PagePattern headerContent={<Header />} footerContent={<Footer />}>
+      <Content />
+    </PagePattern>
   );
 };
 

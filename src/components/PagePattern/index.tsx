@@ -1,31 +1,39 @@
 import React from 'react';
 
-import { Container, Warpper, Header, Body, Footer } from './styles';
+import {
+  Container,
+  Warpper,
+  HeaderContent,
+  Body,
+  FooterContent,
+} from './styles';
+import Header from '../Header';
+import Footer from '../Footer';
 
 interface Props {
-  headerContent: React.ReactNode;
-  bodyContent: React.ReactNode;
-  footerContent: React.ReactNode;
+  headerContent?: React.ReactNode;
+  children: JSX.Element[] | JSX.Element;
+  footerContent?: React.ReactNode;
 }
 
 const PagePattern: React.FC<Props> = ({
   headerContent,
-  bodyContent,
   footerContent,
+  children,
 }) => {
   return (
     <Container>
-      <Header>
-        <Warpper>{headerContent}</Warpper>
-      </Header>
+      <HeaderContent>
+        <Warpper>{headerContent || <Header />}</Warpper>
+      </HeaderContent>
 
       <Body>
-        <Warpper>{bodyContent}</Warpper>
+        <Warpper>{children}</Warpper>
       </Body>
 
-      <Footer>
-        <Warpper>{footerContent}</Warpper>
-      </Footer>
+      <FooterContent>
+        <Warpper>{footerContent || <Footer />}</Warpper>
+      </FooterContent>
     </Container>
   );
 };

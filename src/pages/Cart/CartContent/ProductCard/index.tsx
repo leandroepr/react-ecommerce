@@ -6,7 +6,6 @@ import {
   Container,
   ProductImage,
   Item,
-  Title,
   Subtitle,
   PaymentInfo,
   Actions,

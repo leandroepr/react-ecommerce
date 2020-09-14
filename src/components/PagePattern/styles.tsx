@@ -15,7 +15,7 @@ export const Warpper = styled.div`
   margin: 0 auto;
 `;
 
-export const Header = styled.div`
+export const HeaderContent = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -32,7 +32,7 @@ export const Body = styled.div`
   margin: 0 0 16px 0;
 `;
 
-export const Footer = styled.div`
+export const FooterContent = styled.div`
   display: flex;
   align-items: center;
   flex-shrink: 0;
