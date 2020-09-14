@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import {
   Container,
@@ -14,35 +14,59 @@ import PagePattern from '../../components/PagePattern';
 import ProductCard from './ProductCard';
 import FilterCard from './FilterCard';
 
-const ProductList: React.FC = () => {
+// const useFetch = (url: string) => {
+//   const [response, setResponse] = useState<Product[]>([]);
+//   const [error, setError] = useState(null);
+//   const [loading, setLoading] = useState(false);
+//   useEffect(() => {
+//     const doFetch = async () => {
+//       setLoading(true);
+//       try {
+//         const res = await fetch(
+//           `http://my-json-server.typicode.com/leandroepr/repo/products`
+//         );
+//         const json = await res.json();
+//         setResponse(json);
+//       } catch (e) {
+//         setError(e);
+//       } finally {
+//         setLoading(false);
+//       }
+//     };
+//     doFetch();
+//   }, [url]);
+//   return { response, error, loading };
+// };
+
+interface Props {
+  category?: string;
+}
+
+const ProductList: React.FC<Props> = ({ category }) => {
+  const [productList, setProductList] = useState([]);
+
   return (
     <PagePattern headerContent={<Header />} footerContent={<Footer />}>
-      <Content />
+      <Container>
+        <Row>
+          <strong>Buscas relacionadas: </strong>
+          <span>roupas femininas</span>
+          <span>camisas masculinas</span>
+          <span>body feminino</span>
+          <span>cropped</span>
+          <span>conjuntos femininos</span>
+        </Row>
+
+        <Panel>
+          <Column>
+            <FilterColumn />
+          </Column>
+          <Column>
+            <ProductColumn />
+          </Column>
+        </Panel>
+      </Container>
     </PagePattern>
-  );
-};
-
-const Content = () => {
-  return (
-    <Container>
-      <Row>
-        <strong>Buscas relacionadas: </strong>
-        <span>roupas femininas</span>
-        <span>camisas masculinas</span>
-        <span>body feminino</span>
-        <span>cropped</span>
-        <span>conjuntos femininos</span>
-      </Row>
-
-      <Panel>
-        <Column>
-          <FilterColumn />
-        </Column>
-        <Column>
-          <ProductColumn />
-        </Column>
-      </Panel>
-    </Container>
   );
 };
 

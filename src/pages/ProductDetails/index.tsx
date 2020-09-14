@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 
 import PagePattern from '../../components/PagePattern';
 
@@ -6,46 +6,53 @@ import { Container, Row, Panel, Column, Gallery, Description } from './styles';
 import SellerInfoCard from './SellerInfoCard';
 import ProductAction from './ProductAction';
 import WarrantyCard from './WarrantyCard';
-import {
-  ProductDetailsProvider,
-  ProductDetailsContext,
-} from './ProductDetailsContext';
+import useFetch from '../../context/ProductDetailsContext';
 
 const ProductDetails: React.FC = () => {
-  const { categories, image, description } = useContext(ProductDetailsContext);
+  const { response, error, loading } = useFetch(
+    'camiseta-hering-super-cotton-masculina'
+  );
+
+  console.log(response);
+
   return (
-    <ProductDetailsProvider>
-      <PagePattern>
-        <Container>
-          <Row>
-            <a href="/">Voltar à lista</a>
-            {categories.map((category, index) => (
+    <PagePattern>
+      {/* <div className="App">
+        <h1>useFetch Usage</h1>
+        {loading && <p>Loading...</p>}
+        {error && <p>Something went wrong...</p>}
+        {response && <p>{response.title}</p>}
+      </div> */}
+      <Container>
+        <Row>
+          <a href="/">Voltar à lista</a>
+          {response &&
+            response.categories.map((category, index) => (
               <a key={index} href="/">
-                {category.displayName}
+                {category}
               </a>
             ))}
-          </Row>
+        </Row>
 
-          <Panel>
-            <Column>
-              <Gallery>
-                <img alt={image.description} src={image.url} />
-              </Gallery>
-              <Description>
-                <h2>Descrição</h2>
-                <p>{addLineBreaks(description)}</p>
-              </Description>
-            </Column>
+        <Panel>
+          <Column>
+            <Gallery>
+              <img alt={response.description} src={response.imageUrl} />
+            </Gallery>
+            <Description>
+              <h2>Descrição</h2>
+              <p>{addLineBreaks(response.description)}</p>
+            </Description>
+          </Column>
 
-            <Column>
-              <ProductAction />
-              <SellerInfoCard />
-              <WarrantyCard />
-            </Column>
-          </Panel>
-        </Container>
-      </PagePattern>
-    </ProductDetailsProvider>
+          <Column>
+            <ProductAction product={response!} />
+            <SellerInfoCard />
+            <WarrantyCard />
+          </Column>
+        </Panel>
+      </Container>
+    </PagePattern>
   );
 };
 

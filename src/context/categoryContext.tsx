@@ -1,6 +1,6 @@
 import React, { useState, createContext, useContext } from 'react';
 
-import TShirt from '../../assets/images/tshirt.png';
+import TShirt from '../assets/images/tshirt.png';
 
 export interface Product {
   imageUrl: string;

@@ -9,7 +9,7 @@ import {
   NextIcon,
 } from './styles';
 import ProductSmalCard from '../ProductSmalCard';
-import { Product } from '../categoryContext';
+import { Product } from '../../../context/categoryContext';
 
 interface Props {
   title: string;

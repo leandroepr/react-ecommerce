@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React from 'react';
 
 import {
   Container,
@@ -17,24 +17,13 @@ import {
   Benefits,
   ShieldIcon,
 } from './styles';
-import { ProductDetailsContext } from '../ProductDetailsContext';
+import { Product } from '../../../types/product';
 
-interface PriceTag {
-  simbol: string;
-  fragment: string;
-  cents: string;
+interface Props {
+  product: Product;
 }
 
-interface ProductData {
-  condition: string;
-  title: string;
-  price: PriceTag;
-  installmentsInfo: string;
-  stockAmount: number;
-  soldAmount: number;
-}
-
-function ProductAction() {
+const ProductAction: React.FC<Props> = ({ product }) => {
   const {
     title,
     price,
@@ -42,33 +31,28 @@ function ProductAction() {
     stockAmount,
     condition,
     soldAmount,
-  } = useContext(ProductDetailsContext);
+  } = product;
+
   const stockStatusLabel =
     stockAmount > 0 ? 'Estoque disponível' : 'Sem estoque';
   const conditionLabel = `${condition} | ${soldAmount} vendidos`;
-
+  const [fragment, cents] = price.split('.');
   return (
     <Container>
       <Condition>{conditionLabel}</Condition>
-
       <Row>
         <h1>{title}</h1>
         <HeartIcon />
       </Row>
-
       <DispatchTag>Enviando normalmente</DispatchTag>
-
       <PriceCard>
         <PriceRow>
-          <span className="simbol">{price.simbol}</span>
-          <span className="fraction">{price.fragment}</span>
-          <span className="cents">{price.cents}</span>
+          <span className="simbol">R$</span>
+          <span className="fraction">{fragment}</span>
+          <span className="cents">{cents}</span>
         </PriceRow>
-
         <InstallmentsInfo>{installmentsInfo}</InstallmentsInfo>
-
         <StockStatus>{stockStatusLabel}</StockStatus>
-
         <MethodCard>
           <CheckIcon />
           <div>
@@ -79,12 +63,10 @@ function ProductAction() {
             </a>
           </div>
         </MethodCard>
-
         <Actions>
           <Button solid>Comprar agora</Button>
           <Button>Adicionar ao carrinho</Button>
         </Actions>
-
         <Benefits>
           <li>
             <ShieldIcon />
@@ -97,6 +79,6 @@ function ProductAction() {
       </PriceCard>
     </Container>
   );
-}
+};
 
 export default ProductAction;

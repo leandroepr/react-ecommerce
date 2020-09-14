@@ -4,7 +4,10 @@ import PagePattern from '../../components/PagePattern';
 import { Container } from './styles';
 import CategorySection from './CategorySection';
 
-import { CategoryProvider, CategoryContext } from './categoryContext';
+import {
+  CategoryProvider,
+  CategoryContext,
+} from '../../context/categoryContext';
 
 const CategoryList: React.FC = () => {
   const categoryList = useContext(CategoryContext);

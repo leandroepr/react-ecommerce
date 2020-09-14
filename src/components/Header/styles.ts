@@ -24,21 +24,24 @@ export const Container = styled.div`
 export const LogoWarpper = styled.div`
   grid-area: logo;
   display: flex;
-  flex-direction: row;
-  align-items: center;
 
-  font-weight: bold;
-  color: var(--color-emphasis);
+  > a {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-weight: bold;
+    color: var(--color-emphasis);
 
-  font-variant-caps: all-petite-caps;
-  font-size: 18px;
-  line-height: 15px;
-
-  > div {
-    margin-left: 10px;
-    > p + p {
-      letter-spacing: 6px;
-      font-weight: 400;
+    font-variant-caps: all-petite-caps;
+    font-size: 18px;
+    line-height: 15px;
+    text-decoration: none;
+    > div {
+      margin-left: 10px;
+      > p + p {
+        letter-spacing: 6px;
+        font-weight: 400;
+      }
     }
   }
 `;
@@ -139,10 +142,11 @@ export const NavigationWarpper = styled.nav`
   flex-direction: row;
   align-items: center;
 
-  > span {
+  > a {
     font-size: 14px;
     font-weight: 300;
     color: var(--color-gray);
+    text-decoration: none;
 
     cursor: pointer;
     margin-right: 32px;

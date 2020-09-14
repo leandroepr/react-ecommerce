@@ -16,16 +16,19 @@ import {
   NotificationIcon,
   CartIcon,
 } from './styles';
+import { Link } from 'react-router-dom';
 
 function Header() {
   return (
     <Container>
       <LogoWarpper>
-        <LogoIcon />
-        <div>
-          <p>Compre</p>
-          <p>Fácil</p>
-        </div>
+        <Link to="/">
+          <LogoIcon />
+          <div>
+            <p>Compre</p>
+            <p>Fácil</p>
+          </div>
+        </Link>
       </LogoWarpper>
 
       <SearchWrapper>
@@ -47,10 +50,10 @@ function Header() {
       </AddressWarpper>
 
       <NavigationWarpper>
-        <span>Todos</span>
-        <span>Roupas</span>
-        <span>Calçados</span>
-        <span>Utilitários</span>
+        <Link to="/">Todos</Link>
+        <Link to="/roupas">Roupas</Link>
+        <Link to="/calcados">Calçados</Link>
+        <Link to="/utilitarios">Utilitários</Link>
       </NavigationWarpper>
 
       <ProfileMenuWarpper>
@@ -68,7 +71,9 @@ function Header() {
           <NotificationIcon />
         </div>
         <div>
-          <CartIcon />
+          <Link to="/cart">
+            <CartIcon />
+          </Link>
         </div>
       </ProfileMenuWarpper>
     </Container>

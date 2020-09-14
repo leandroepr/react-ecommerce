@@ -1,7 +1,5 @@
 import React from 'react';
 
-import tshirt from '../../../assets/images/tshirt.png';
-
 import {
   Container,
   ItemImage,
@@ -9,7 +7,7 @@ import {
   PriceRow,
   InstallmentsInfo,
 } from './styles';
-import { Product } from '../categoryContext';
+import { Product } from '../../../context/categoryContext';
 
 const ProductSmalCard: React.FC<Product> = ({
   imageUrl,
