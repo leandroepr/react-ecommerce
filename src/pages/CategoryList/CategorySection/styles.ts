@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { HiInformationCircle, HiChevronRight } from 'react-icons/hi';
+import { HiChevronRight } from 'react-icons/hi';
 
 export const Container = styled.div`
   display: flex;

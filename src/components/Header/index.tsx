@@ -58,7 +58,7 @@ function Header() {
         <LocationIcon />
         <div>
           <p>Enviar para Nelza</p>
-          <strong>Avenida do porto, 280</strong>
+          <strong>Avenida dos pássaros, 28</strong>
         </div>
       </AddressWarpper>
 
