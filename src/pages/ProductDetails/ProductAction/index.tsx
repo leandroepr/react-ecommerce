@@ -77,6 +77,7 @@ const ProductAction: React.FC<Props> = ({ product }) => {
           <div>
             <span className="title">Frete grátis</span>
             <span className="details">Benefício Lorem Ipsum</span>
+            // eslint-disable-next-line jsx-a11y/anchor-is-valid
             <a href="#" className="more">
               Ver mais opções
             </a>
