@@ -19,7 +19,6 @@ import {
 } from './styles';
 import { Product } from '../../../types/product';
 import { useCart } from '../../../context/CartContext';
-import ProductList from '../../ProductList';
 
 interface Props {
   product: Product;
@@ -27,7 +26,6 @@ interface Props {
 
 const ProductAction: React.FC<Props> = ({ product }) => {
   const {
-    id,
     title,
     price,
     installmentsInfo,

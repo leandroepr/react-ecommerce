@@ -21,7 +21,7 @@ import { useParams } from 'react-router-dom';
 export function useProduct() {
   const context = useContext(ProductListContext);
 
-  const id = useParams();
+  const { id } = useParams();
   const data = context.data.filter((product) => product.id === id)[0];
   return { data };
 }
