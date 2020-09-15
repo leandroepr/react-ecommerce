@@ -11,24 +11,36 @@ import {
   SumaryRowTotal,
 } from './styles';
 
-const SumaryCard: React.FC = () => {
+interface Props {
+  numberOfProducts: number;
+  valueOfProducts: string;
+  costOfFreight: string;
+  totalAmount: string;
+}
+
+const SumaryCard: React.FC<Props> = ({
+  numberOfProducts,
+  valueOfProducts,
+  costOfFreight,
+  totalAmount,
+}) => {
   return (
     <Container>
       <SumaryContent>
         <SumaryRowProducts>
-          <Label>Produtos (3)</Label>
+          <Label>Produtos ({numberOfProducts})</Label>
           <Price>
             <span className="simbol">R$</span>
-            <span className="fraction">34</span>
-            <span className="cents">99</span>
+            <span className="fraction">{valueOfProducts.split('.')[0]}</span>
+            <span className="cents">{valueOfProducts.split('.')[1]}</span>
           </Price>
         </SumaryRowProducts>
         <SumaryRowShipping>
           <Label>Envio para Avenida do Porto 280, Colombo</Label>
           <Price>
             <span className="simbol">R$</span>
-            <span className="fraction">270</span>
-            <span className="cents">99</span>
+            <span className="fraction">{costOfFreight.split('.')[0]}</span>
+            <span className="cents">{costOfFreight.split('.')[1]}</span>
           </Price>
         </SumaryRowShipping>
       </SumaryContent>
@@ -37,8 +49,8 @@ const SumaryCard: React.FC = () => {
           <Label>Total</Label>
           <Price>
             <span className="simbol">R$</span>
-            <span className="fraction">270</span>
-            <span className="cents">87</span>
+            <span className="fraction">{totalAmount.split('.')[0]}</span>
+            <span className="cents">{totalAmount.split('.')[1]}</span>
           </Price>
         </SumaryRowTotal>
       </SumaryTotalContent>

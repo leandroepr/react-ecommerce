@@ -1,6 +1,4 @@
-import React from 'react';
-
-import tshirtImage from '../../../../assets/images/tshirt.png';
+import React, { useState } from 'react';
 
 import {
   Container,
@@ -16,42 +14,71 @@ import {
   Price,
   PriceRow,
 } from './styles';
+import { CartItem } from '../../../../types/cart';
+import { Link } from 'react-router-dom';
+import { useCart } from '../../../../context/CartContext';
 
-const ProductCard: React.FC = () => {
+interface Props {
+  item: CartItem;
+}
+
+const ProductCard: React.FC<Props> = ({ item }) => {
+  const { product, amount } = item;
+  const { updateItemFromCart, removeItemFromCart } = useCart();
+
+  const increase = () => {
+    updateItemFromCart({ product: product, amount: amount + 1 });
+  };
+  const decrease = () => {
+    updateItemFromCart({ product: product, amount: amount - 1 });
+  };
+  const remove = () => {
+    removeItemFromCart(product.id);
+  };
+
+  const [fraction, cents] = `${(
+    item.amount * parseFloat(item.product.price)
+  ).toFixed(2)}`.split('.');
+
   return (
     <Container>
       <ProductImage>
-        <img alt="T-Shirt" src={tshirtImage} />
+        <img alt={product.title} src={product.imageUrl} />
       </ProductImage>
       <Item>
-        <h2>Tênis Masculino Form's Cano Alto Marrom Lançamento!!</h2>
+        <h2>{product.title}</h2>
         <Subtitle>
-          <span>Cor: Branco 012, Tamanho: 42</span>
-          <a href="#">Alterar</a>
+          <span>Lorem ipsum dolor sit amet consectetur</span>
+          <Link to={`/${product.categoryId}/${product.id}`}>Alterar</Link>
         </Subtitle>
         <PaymentInfo>
-          <span>Até 12 vezes sem juros</span>
+          <span>{product.installmentsInfo}</span>
         </PaymentInfo>
         <Actions>
           <Action>Mais Produtos do vendedor</Action>
           <Action>Comprar agora</Action>
           <Action>Salvar para depois</Action>
-          <Action>Excluir</Action>
+          <Action style={{ cursor: 'pointer' }} onClick={remove}>
+            Excluir
+          </Action>
         </Actions>
       </Item>
       <Counter>
         <div>
-          <MinusIcon />
-          <span>2</span>
-          <PlusIcon />
+          <MinusIcon
+            style={amount === 0 ? { color: 'var(--color-border)' } : undefined}
+            onClick={amount > 0 ? decrease : undefined}
+          />
+          <span>{amount}</span>
+          <PlusIcon onClick={increase} />
         </div>
-        <span>688 disponíveis</span>
+        <span>{`${product.stockAmount} disponíveis`}</span>
       </Counter>
       <Price>
         <PriceRow>
           <span className="simbol">R$</span>
-          <span className="fraction">34</span>
-          <span className="cents">99</span>
+          <span className="fraction">{fraction}</span>
+          <span className="cents">{cents}</span>
         </PriceRow>
       </Price>
     </Container>

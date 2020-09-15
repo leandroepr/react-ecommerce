@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import {
   Container,
@@ -16,9 +16,16 @@ import {
   NotificationIcon,
   CartIcon,
 } from './styles';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 function Header() {
+  const [searchText, setSearchText] = useState('');
+
+  const history = useHistory();
+  const searchHandler = () => {
+    history.push(`/product/?${searchText}`);
+  };
+
   return (
     <Container>
       <LogoWarpper>
@@ -32,8 +39,14 @@ function Header() {
       </LogoWarpper>
 
       <SearchWrapper>
-        <input placeholder="Buscar categorias e prdutos..." />
-        <SearchIcon />
+        <input
+          placeholder="Buscar categorias e prdutos..."
+          onChange={(e) => setSearchText(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') searchHandler();
+          }}
+        />
+        <SearchIcon onClick={searchHandler} />
       </SearchWrapper>
 
       <OfferWarpper>
@@ -53,7 +66,7 @@ function Header() {
         <Link to="/">Todos</Link>
         <Link to="/roupas">Roupas</Link>
         <Link to="/calcados">Calçados</Link>
-        <Link to="/utilitarios">Utilitários</Link>
+        <Link to="/acessorios">Utilitários</Link>
       </NavigationWarpper>
 
       <ProfileMenuWarpper>

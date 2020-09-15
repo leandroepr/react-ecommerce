@@ -11,6 +11,11 @@ export const Container = styled.div`
   box-shadow: var(--panel-shadow);
 
   color: var(--color-black);
+
+  > a {
+    cursor: pointer;
+    text-decoration: none;
+  }
 `;
 
 export const ProductImage = styled.div`
@@ -61,7 +66,10 @@ export const PriceRow = styled.div`
 
 export const InstallmentsInfo = styled.div`
   font-size: 14px;
-  color: var(--color-green);
+  color: var(--color-black);
+  .goodDeal {
+    color: var(--color-green);
+  }
 `;
 
 export const DispatchTag = styled.div`
@@ -75,6 +83,12 @@ export const DispatchTag = styled.div`
   margin-bottom: 13px;
 `;
 
-export const Description = styled.div`
+export const Description = styled.span`
+  color: var(--color-gray);
   font-size: 14px;
+  display: block;
+  max-height: 50px;
+  overflow: hidden;
+  /* white-space: nowrap; */
+  text-overflow: ellipsis;
 `;

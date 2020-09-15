@@ -6,8 +6,8 @@ function Footer() {
   return (
     <Container>
       <span>
-        Copyright © 1999-2020 Ebazar.com.br LTDA.Trabalhe conoscoTermos e
-        condiçõesComo cuidamos da sua privacidadeContato
+        Copyright © 1999-2020 LeandroReis LTDA.Trabalhe conosco - Termos e
+        condições - Como cuidamos da sua privacidadeContato
       </span>
     </Container>
   );

@@ -11,37 +11,45 @@ import {
   Description,
 } from './styles';
 
-import tshirtImage from '../../../assets/images/tshirt.png';
+import { Product } from '../../../types/product';
+import { Link } from 'react-router-dom';
 
 interface Props {
-  freeShipping?: boolean;
-  interestFree?: boolean;
+  product: Product;
 }
 
-const ProductCard: React.FC = () => {
+const ProductCard: React.FC<Props> = ({ product }) => {
+  const [fragment, cents] = product.price.split('.');
+
+  const isInterestFree = product.installmentsInfo.includes('sem juros');
   return (
     <Container>
-      <ProductImage>
-        <img alt="T-Shirt" src={tshirtImage} />
-      </ProductImage>
-      <ProductContent>
-        <PriceGroup>
-          <PriceRow>
-            <span className="sinbol">R$</span>
-            <span className="fraction">34</span>
-            <span className="cents">99</span>
-          </PriceRow>
+      <Link to={`/${product.categoryId}/${product.id}`}>
+        <ProductImage>
+          <img alt={product.title} src={product.imageUrl} />
+        </ProductImage>
+        <ProductContent>
+          <PriceGroup>
+            <PriceRow>
+              <span className="sinbol">R$</span>
+              <span className="fraction">{fragment}</span>
+              <span className="cents">{cents}</span>
+            </PriceRow>
 
-          <InstallmentsInfo>3x de R$ 11,67 sem juros</InstallmentsInfo>
-        </PriceGroup>
+            <InstallmentsInfo
+              style={
+                isInterestFree ? { color: 'var(--color-green)' } : undefined
+              }
+            >
+              {product.installmentsInfo}
+            </InstallmentsInfo>
+          </PriceGroup>
 
-        <DispatchTag>Enviando normalmente</DispatchTag>
+          <DispatchTag>Enviando normalmente</DispatchTag>
 
-        <Description>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus
-          eum, fugiat iusto quo voluptate a.
-        </Description>
-      </ProductContent>
+          <Description>{product.title}</Description>
+        </ProductContent>
+      </Link>
     </Container>
   );
 };

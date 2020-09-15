@@ -8,61 +8,60 @@ import {
   Column,
   ProductsPanel,
 } from './styles';
-import Header from '../../components/Header';
-import Footer from '../../components/Footer';
 import PagePattern from '../../components/PagePattern';
 import ProductCard from './ProductCard';
 import FilterCard from './FilterCard';
-
-// const useFetch = (url: string) => {
-//   const [response, setResponse] = useState<Product[]>([]);
-//   const [error, setError] = useState(null);
-//   const [loading, setLoading] = useState(false);
-//   useEffect(() => {
-//     const doFetch = async () => {
-//       setLoading(true);
-//       try {
-//         const res = await fetch(
-//           `http://my-json-server.typicode.com/leandroepr/repo/products`
-//         );
-//         const json = await res.json();
-//         setResponse(json);
-//       } catch (e) {
-//         setError(e);
-//       } finally {
-//         setLoading(false);
-//       }
-//     };
-//     doFetch();
-//   }, [url]);
-//   return { response, error, loading };
-// };
-
+import { useProductList } from '../../context/ProductListContext';
+import { useLocation } from 'react-router-dom';
 interface Props {
   category?: string;
 }
 
 const ProductList: React.FC<Props> = ({ category }) => {
-  const [productList, setProductList] = useState([]);
+  const { data, loading } = useProductList();
+  const productList = data;
+  // const [productList, setProductList] = useState<Product[]>([]);
+  const [relatedSearchItems] = useState([
+    'roupas femininas',
+    'camisas masculinas',
+    'body feminino',
+    'cropped',
+    'conjuntos femininos',
+  ]);
+
+  const filterHeaderText = category ? category : 'Todos';
+
+  const { search } = useLocation();
 
   return (
-    <PagePattern headerContent={<Header />} footerContent={<Footer />}>
+    <PagePattern>
       <Container>
         <Row>
           <strong>Buscas relacionadas: </strong>
-          <span>roupas femininas</span>
-          <span>camisas masculinas</span>
-          <span>body feminino</span>
-          <span>cropped</span>
-          <span>conjuntos femininos</span>
+          {relatedSearchItems.map((item, index) => (
+            <span key={index}>{item}</span>
+          ))}
         </Row>
 
         <Panel>
+          <Column>{<FilterColumn title={filterHeaderText} />}</Column>
           <Column>
-            <FilterColumn />
-          </Column>
-          <Column>
-            <ProductColumn />
+            <ProductsPanel>
+              {loading && <p>Carregando Produtos...</p>}
+
+              {productList
+                .filter(
+                  (p) =>
+                    (p.categoryId === category || category === undefined) &&
+                    (search === undefined ||
+                      p.title
+                        .toLocaleLowerCase()
+                        .includes(search.replace('?', '').toLocaleLowerCase()))
+                )
+                .map((product) => (
+                  <ProductCard key={product.id} product={product} />
+                ))}
+            </ProductsPanel>
           </Column>
         </Panel>
       </Container>
@@ -70,12 +69,16 @@ const ProductList: React.FC<Props> = ({ category }) => {
   );
 };
 
-const FilterColumn = () => {
+interface FilterColumnProps {
+  title: string;
+}
+
+const FilterColumn: React.FC<FilterColumnProps> = ({ title }) => {
   return (
     <Container>
       <FilterHeader>
         <span>Calçados, Roupas e Bolsas</span>
-        <h1>Sapatos</h1>
+        <h1>Todos</h1>
         <span>1.472.478 resultados</span>
       </FilterHeader>
 
@@ -95,6 +98,8 @@ const FilterColumn = () => {
         items={[
           { name: 'Botas', amount: '1.273' },
           { name: 'Sapatos', amount: '100' },
+          { name: 'Sandalhas', amount: '100' },
+          { name: 'Sapatenis', amount: '5' },
         ]}
       />
       <FilterCard
@@ -104,22 +109,6 @@ const FilterColumn = () => {
           { name: 'Com juros', amount: '1.100' },
         ]}
       />
-    </Container>
-  );
-};
-
-const ProductColumn = () => {
-  return (
-    <Container>
-      <ProductsPanel>
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-      </ProductsPanel>
     </Container>
   );
 };

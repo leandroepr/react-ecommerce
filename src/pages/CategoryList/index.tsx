@@ -11,6 +11,9 @@ import {
 
 const CategoryList: React.FC = () => {
   const categoryList = useContext(CategoryContext);
+  if (!categoryList) {
+    return <p>Loading</p>;
+  }
   return (
     <CategoryProvider>
       <PagePattern>

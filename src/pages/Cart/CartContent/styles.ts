@@ -5,8 +5,9 @@ export const Container = styled.div``;
 export const ProductList = styled.div``;
 export const ActionContainer = styled.div`
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
 
   padding-top: 48px;
   border-top: 1px solid var(--color-border);
@@ -14,6 +15,8 @@ export const ActionContainer = styled.div`
   > button {
     padding: 13px 32px 12px;
     font-size: 18px;
+
+    margin: 48px 0 0 32px;
   }
 `;
 
@@ -34,4 +37,26 @@ export const Button = styled.button<ButtonProps>`
   border: ${(props) => (props.solid ? 'none' : '1px solid var(--color-blue)')};
 
   cursor: pointer;
+`;
+
+export const EmptyCartInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding: 120px 30px 300px;
+
+  > h3 {
+    font-size: 32px;
+    font-weight: 200;
+    color: var(--color-gray);
+  }
+
+  > p {
+    color: var(--color-gray);
+    font-weight: 200;
+    width: 400px;
+    text-align: center;
+    line-height: 1.6;
+  }
 `;

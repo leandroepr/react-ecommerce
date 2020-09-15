@@ -123,6 +123,8 @@ export const PlusIcon = styled(plusIcon)`
 export const Price = styled.div`
   display: flex;
   flex-direction: column;
+
+  min-width: 130px;
 `;
 
 export const PriceRow = styled.div`

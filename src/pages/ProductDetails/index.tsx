@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React from 'react';
 
 import PagePattern from '../../components/PagePattern';
 
@@ -6,28 +6,27 @@ import { Container, Row, Panel, Column, Gallery, Description } from './styles';
 import SellerInfoCard from './SellerInfoCard';
 import ProductAction from './ProductAction';
 import WarrantyCard from './WarrantyCard';
-import useFetch from '../../context/ProductDetailsContext';
+import { useProduct } from '../../context/ProductContext';
 
 const ProductDetails: React.FC = () => {
-  const { response, error, loading } = useFetch(
-    'camiseta-hering-super-cotton-masculina'
-  );
-
-  console.log(response);
-
+  const { data } = useProduct();
+  const product = data;
+  if (!data) {
+    return (
+      <PagePattern>
+        <Container>
+          <p>Loading...</p>
+        </Container>
+      </PagePattern>
+    );
+  }
   return (
     <PagePattern>
-      {/* <div className="App">
-        <h1>useFetch Usage</h1>
-        {loading && <p>Loading...</p>}
-        {error && <p>Something went wrong...</p>}
-        {response && <p>{response.title}</p>}
-      </div> */}
       <Container>
         <Row>
           <a href="/">Voltar à lista</a>
-          {response &&
-            response.categories.map((category, index) => (
+          {product &&
+            product.categories.map((category, index) => (
               <a key={index} href="/">
                 {category}
               </a>
@@ -37,16 +36,21 @@ const ProductDetails: React.FC = () => {
         <Panel>
           <Column>
             <Gallery>
-              <img alt={response.description} src={response.imageUrl} />
+              <img alt={product.title} src={product.imageUrl} />
             </Gallery>
             <Description>
               <h2>Descrição</h2>
-              <p>{addLineBreaks(response.description)}</p>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Suscipit laudantium modi sed error maxime explicabo, aliquid
+                odit dolores. Quisquam, vero corrupti consectetur ex ad quae
+                delectus repellendus velit consequuntur eius.
+              </p>
             </Description>
           </Column>
 
           <Column>
-            <ProductAction product={response!} />
+            <ProductAction product={product} />
             <SellerInfoCard />
             <WarrantyCard />
           </Column>
@@ -56,11 +60,11 @@ const ProductDetails: React.FC = () => {
   );
 };
 
-const addLineBreaks = (text: string) =>
-  text.split('\n').map((line, index) => (
-    <React.Fragment key={`${line}-${index}`}>
-      {line}
-      <br />
-    </React.Fragment>
-  ));
+// const addLineBreaks = (text: string) =>
+//   text.split('\n').map((line, index) => (
+//     <React.Fragment key={`${line}-${index}`}>
+//       {line}
+//       <br />
+//     </React.Fragment>
+//   ));
 export default ProductDetails;
