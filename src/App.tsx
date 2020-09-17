@@ -5,15 +5,18 @@ import { CartProvider } from './context/CartContext';
 import { BrowserRouter } from 'react-router-dom';
 import GlobalStyles from './styles/GlobalStyles';
 import Routes from './routes';
+import { CategoryProvider } from './context/categoryContext';
 
 function App() {
   return (
     <BrowserRouter>
       <GlobalStyles />
       <CartProvider>
-        <ProductListProvider>
-          <Routes />
-        </ProductListProvider>
+        <CategoryProvider>
+          <ProductListProvider>
+            <Routes />
+          </ProductListProvider>
+        </CategoryProvider>
       </CartProvider>
     </BrowserRouter>
   );

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import {
   Container,
@@ -7,9 +8,20 @@ import {
   PriceRow,
   InstallmentsInfo,
 } from './styles';
-import { Product } from '../../../context/categoryContext';
+
+interface Product {
+  productId: string;
+  categoryId: string;
+  imageDescription: string;
+  imageUrl: string;
+  installmentInfo: string;
+  priceFraction: string;
+  priceCents: string;
+}
 
 const ProductSmalCard: React.FC<Product> = ({
+  productId,
+  categoryId,
   imageUrl,
   imageDescription,
   priceFraction,
@@ -18,18 +30,28 @@ const ProductSmalCard: React.FC<Product> = ({
 }) => {
   return (
     <Container>
-      <ItemImage>
-        <img alt={imageDescription} src={imageUrl} />
-      </ItemImage>
-      <PriceBlock>
-        <PriceRow>
-          <span className="simbol">R$</span>
-          <span className="fraction">{priceFraction}</span>
-          <span className="cents">{priceCents}</span>
-        </PriceRow>
+      <Link to={`/${categoryId}/${productId}`}>
+        <ItemImage>
+          <img alt={imageDescription} src={imageUrl} />
+        </ItemImage>
+        <PriceBlock>
+          <PriceRow>
+            <span className="simbol">R$</span>
+            <span className="fraction">{priceFraction}</span>
+            <span className="cents">{priceCents}</span>
+          </PriceRow>
 
-        <InstallmentsInfo>{installmentInfo}</InstallmentsInfo>
-      </PriceBlock>
+          <InstallmentsInfo
+            style={
+              installmentInfo.includes('sem juros')
+                ? { color: 'var(--color-green)' }
+                : undefined
+            }
+          >
+            {installmentInfo}
+          </InstallmentsInfo>
+        </PriceBlock>
+      </Link>
     </Container>
   );
 };

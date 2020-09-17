@@ -1,34 +1,48 @@
-import React, { useContext } from 'react';
+import React from 'react';
 
 import PagePattern from '../../components/PagePattern';
 import { Container } from './styles';
 import CategorySection from './CategorySection';
 
 import {
-  CategoryProvider,
-  CategoryContext,
+  useCategories,
+  Category,
+  Product,
 } from '../../context/categoryContext';
 
 const CategoryList: React.FC = () => {
-  const categoryList = useContext(CategoryContext);
+  const { categoryList, productList } = useCategories();
+  // console.log(categoryList);
+
+  return (
+    <PagePattern>
+      <CategoryListCard categoryList={categoryList} productList={productList} />
+    </PagePattern>
+  );
+};
+
+interface Props {
+  categoryList: Category[];
+  productList: Product[];
+}
+const CategoryListCard: React.FC<Props> = ({ categoryList, productList }) => {
   if (!categoryList) {
     return <p>Loading</p>;
   }
   return (
-    <CategoryProvider>
-      <PagePattern>
-        <Container>
-          {categoryList.map((category, index) => (
-            <CategorySection
-              key={index}
-              title={category.title}
-              detailPath={category.detailPath}
-              productList={category.productList}
-            />
-          ))}
-        </Container>
-      </PagePattern>
-    </CategoryProvider>
+    <Container>
+      {categoryList.map((category) => (
+        <CategorySection
+          key={category.id}
+          categoryId={category.id}
+          title={category.name}
+          detailPath={category.id}
+          productList={productList
+            .filter((p) => p.categoryId === category.id)
+            .slice(0, 5)}
+        />
+      ))}
+    </Container>
   );
 };
 

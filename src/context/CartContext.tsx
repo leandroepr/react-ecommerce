@@ -1,18 +1,37 @@
 import React, { createContext, useContext, useState } from 'react';
-import { Cart, CartItem } from '../types/cart';
+
 import usePersistedState from '../utils/usePersistedState';
 
-const emptyCart: Cart = {
-  cartItemList: [],
-  deliveryValue: 0,
-  setDeliveryValue: () => {},
-  addItemToCart: () => {},
-  removeItemFromCart: () => {},
-  updateItemFromCart: () => {},
-  clearCart: () => {},
-};
+export interface Product {
+  id: string;
+  title: string;
+  imageUrl: string;
+  condition: string;
+  categoryId: string;
+  categories: string[];
+  description: string;
+  price: string;
+  installmentsInfo: string;
+  stockAmount: number;
+  soldAmount: number;
+}
 
-export const CartContext = createContext<Cart>(emptyCart);
+export interface CartItem {
+  product: Product;
+  amount: number;
+}
+
+export interface Cart {
+  cartItemList: CartItem[];
+  removeItemFromCart: (id: string) => void;
+  addItemToCart: (item: CartItem) => void;
+  deliveryValue: number;
+  setDeliveryValue: (value: number) => void;
+  updateItemFromCart: (item: CartItem) => void;
+  clearCart: () => void;
+}
+
+export const CartContext = createContext<Cart>({} as Cart);
 
 interface Props {
   children: JSX.Element | JSX.Element[];

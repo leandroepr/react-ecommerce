@@ -4,10 +4,13 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   background: var(--color-white);
-  color: var(--color-gray);
   box-shadow: var(--panel-shadow);
   border-radius: 5px;
   cursor: pointer;
+
+  > a {
+    text-decoration: none;
+  }
 `;
 
 export const ItemImage = styled.div`
@@ -18,6 +21,7 @@ export const ItemImage = styled.div`
   height: 224px;
 
   > img {
+    max-width: 99%;
     max-height: 99%;
   }
 `;
@@ -48,4 +52,5 @@ export const PriceRow = styled.div`
 export const InstallmentsInfo = styled.span`
   font-size: 16px;
   font-weight: 300;
+  color: var(--color-gray);
 `;

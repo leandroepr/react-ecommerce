@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 
 import {
   Container,
@@ -9,19 +9,40 @@ import {
   NextIcon,
 } from './styles';
 import ProductSmalCard from '../ProductSmalCard';
-import { Product } from '../../../context/categoryContext';
+import { useHistory } from 'react-router-dom';
+
+interface Product {
+  id: string;
+  title: string;
+  imageUrl: string;
+  condition: string;
+  categoryId: string;
+  categories: string[];
+  description: string;
+  price: string;
+  installmentsInfo: string;
+  stockAmount: number;
+  soldAmount: number;
+}
 
 interface Props {
+  categoryId: string;
   title: string;
   detailPath: string;
   productList: Product[];
 }
 
 const CategorySection: React.FC<Props> = ({
+  categoryId,
   title,
   detailPath,
   productList,
 }) => {
+  const history = useHistory();
+  const handleNextButtonClick = useCallback(() => {
+    history.push(`/${categoryId}`);
+  }, [categoryId, history]);
+
   return (
     <Container>
       <TitleRow>
@@ -31,7 +52,7 @@ const CategorySection: React.FC<Props> = ({
         </Title>
       </TitleRow>
       <ProductSmalCardList productList={productList} />
-      <NextButton>
+      <NextButton onClick={handleNextButtonClick}>
         <span>
           <NextIcon />
         </span>
@@ -43,16 +64,19 @@ const CategorySection: React.FC<Props> = ({
 interface CardProps {
   productList: Product[];
 }
+
 const ProductSmalCardList: React.FC<CardProps> = ({ productList }) => (
   <List>
     {productList.map((product, index) => (
       <ProductSmalCard
         key={index}
+        categoryId={product.categoryId}
+        productId={product.id}
         imageUrl={product.imageUrl}
-        imageDescription={product.imageDescription}
-        installmentInfo={product.installmentInfo}
-        priceFraction={product.priceFraction}
-        priceCents={product.priceCents}
+        imageDescription={product.title}
+        installmentInfo={product.installmentsInfo}
+        priceFraction={product.price.split('.')[0]}
+        priceCents={product.price.split('.')[1]}
       />
     ))}
   </List>
