@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import {
   Container,
@@ -11,25 +11,48 @@ import {
 import PagePattern from '../../components/PagePattern';
 import ProductCard from './ProductCard';
 import FilterCard from './FilterCard';
-import { useProductList } from '../../context/ProductListContext';
+// import { useProductList } from '../../context/ProductListContext';
 import { useLocation } from 'react-router-dom';
+import api from '../../services/api';
+
+export interface Product {
+  id: string;
+  title: string;
+  imageUrl: string;
+  condition: string;
+  categoryId: string;
+  categories: string[];
+  description: string;
+  price: string;
+  installmentsInfo: string;
+  stockAmount: number;
+  soldAmount: number;
+}
+
 interface Props {
   category?: string;
 }
 
 const ProductList: React.FC<Props> = ({ category }) => {
-  const { data, loading } = useProductList();
-  const productList = data;
-  // const [productList, setProductList] = useState<Product[]>([]);
-  const [relatedSearchItems] = useState([
-    'roupas femininas',
-    'camisas masculinas',
-    'body feminino',
-    'cropped',
-    'conjuntos femininos',
-  ]);
+  const [productList, setProductList] = useState<Product[]>([]);
+  const [relatedProducts, setRelatedProducts] = useState<string[]>([]);
+  const [loading, setLoading] = useState(false);
 
-  const filterHeaderText = category ? category : 'Todos';
+  useEffect(() => {
+    async function loadProducts(): Promise<void> {
+      setLoading(true);
+      const response = await api.get('/products');
+      setProductList(response.data);
+      setLoading(false);
+    }
+    async function loadRelatedProducts(): Promise<void> {
+      const response = await api.get('/relatedProducts');
+      setRelatedProducts(response.data);
+    }
+
+    loadProducts();
+    loadRelatedProducts();
+  }, []);
 
   const { search } = useLocation();
 
@@ -38,13 +61,13 @@ const ProductList: React.FC<Props> = ({ category }) => {
       <Container>
         <Row>
           <strong>Buscas relacionadas: </strong>
-          {relatedSearchItems.map((item, index) => (
+          {relatedProducts.map((item, index) => (
             <span key={index}>{item}</span>
           ))}
         </Row>
 
         <Panel>
-          <Column>{<FilterColumn title={filterHeaderText} />}</Column>
+          <Column>{<FilterColumn />}</Column>
           <Column>
             <ProductsPanel>
               {loading && <p>Carregando Produtos...</p>}
@@ -69,11 +92,26 @@ const ProductList: React.FC<Props> = ({ category }) => {
   );
 };
 
-interface FilterColumnProps {
+type Filter = {
+  name: string;
+  amount: string;
+};
+type FilterGroup = {
   title: string;
-}
+  filters: Filter[];
+};
 
-const FilterColumn: React.FC<FilterColumnProps> = ({ title }) => {
+const FilterColumn: React.FC = () => {
+  const [filterGroup, setFilterGroup] = useState<FilterGroup[]>([]);
+  useEffect(() => {
+    async function loadFilterGroups(): Promise<void> {
+      const response = await api.get('/filterGroups');
+      setFilterGroup(response.data);
+    }
+
+    loadFilterGroups();
+  }, []);
+
   return (
     <Container>
       <FilterHeader>
@@ -82,33 +120,13 @@ const FilterColumn: React.FC<FilterColumnProps> = ({ title }) => {
         <span>1.472.478 resultados</span>
       </FilterHeader>
 
-      <FilterCard
-        title="Gênero"
-        items={[
-          { name: 'Feminino', amount: '1.273' },
-          { name: 'Masculino', amount: '945' },
-          { name: 'Sem gênero', amount: '60' },
-          { name: 'Meninas', amount: '704' },
-          { name: 'Meninos', amount: '1.307' },
-          { name: 'Bebês', amount: '1.000' },
-        ]}
-      />
-      <FilterCard
-        title="Categorias"
-        items={[
-          { name: 'Botas', amount: '1.273' },
-          { name: 'Sapatos', amount: '100' },
-          { name: 'Sandalhas', amount: '100' },
-          { name: 'Sapatenis', amount: '5' },
-        ]}
-      />
-      <FilterCard
-        title="Pagamento"
-        items={[
-          { name: 'Sem juros', amount: '1.773' },
-          { name: 'Com juros', amount: '1.100' },
-        ]}
-      />
+      {filterGroup.map((group) => (
+        <FilterCard
+          key={group.title}
+          title={group.title}
+          filters={group.filters}
+        />
+      ))}
     </Container>
   );
 };
