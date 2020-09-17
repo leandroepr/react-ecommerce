@@ -18,13 +18,15 @@ const Routes: React.FC = () => (
     <Route path="/roupas/:id" children={<ProductDetails />} />
     <Route path="/calcados/:id" children={<ProductDetails />} />
     <Route path="/acessorios/:id" children={<ProductDetails />} />
-    <Route path="/roupas/" children={<ProductList category="roupas" />} />
 
+    <Route path="/roupas/" children={<ProductList category="roupas" />} />
     <Route path="/calcados" children={<ProductList category="calcados" />} />
     <Route
       path="/acessorios"
       children={<ProductList category="acessorios" />}
     />
+
+    <Route path="/product/" children={<ProductList />} />
 
     <Route path="/" children={<CategoryList />} />
   </Switch>
