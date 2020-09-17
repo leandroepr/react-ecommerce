@@ -26,7 +26,7 @@ const Routes: React.FC = () => (
       children={<ProductList category="acessorios" />}
     />
 
-    <Route path="/" children={<ProductList />} />
+    <Route path="/" children={<CategoryList />} />
   </Switch>
 );
 
