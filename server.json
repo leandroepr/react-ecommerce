@@ -12,27 +12,27 @@
       "filters": [
         {
           "name": "Feminino",
-          "amout": "1.273"
+          "amount": "1.273"
         },
         {
           "name": "Masculino",
-          "amout": "945"
+          "amount": "945"
         },
         {
           "name": "Sem gênero",
-          "amout": "260"
+          "amount": "260"
         },
         {
           "name": "Meninas",
-          "amout": "1.307"
+          "amount": "1.307"
         },
         {
           "name": "Meninos",
-          "amout": "768"
+          "amount": "768"
         },
         {
           "name": "Bebês",
-          "amout": "1001"
+          "amount": "1001"
         }
       ]
     },
@@ -41,19 +41,19 @@
       "filters": [
         {
           "name": "Botas",
-          "amout": "1.273"
+          "amount": "1.273"
         },
         {
           "name": "Sapatos",
-          "amout": "182"
+          "amount": "182"
         },
         {
           "name": "Sandalhas",
-          "amout": "1098"
+          "amount": "1098"
         },
         {
           "name": "Sapatenis",
-          "amout": "567"
+          "amount": "567"
         }
       ]
     },
@@ -62,11 +62,11 @@
       "filters": [
         {
           "name": "Sem juros",
-          "amout": "21.273"
+          "amount": "21.273"
         },
         {
           "name": "Com juros",
-          "amout": "9.082"
+          "amount": "9.082"
         }
       ]
     }
