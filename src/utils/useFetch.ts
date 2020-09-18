@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-export function useFetch<T>(url: string, initialState: T | (() => T)) {
+function useFetch<T>(url: string, initialState: T | (() => T)) {
   const remoteApiServer = `http://my-json-server.typicode.com/leandroepr/repo/${url}`;
   const [data, setData] = useState<T>(initialState);
   const [error, setError] = useState(null);

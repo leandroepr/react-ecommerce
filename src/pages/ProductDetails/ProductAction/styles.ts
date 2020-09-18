@@ -1,9 +1,5 @@
 import styled from 'styled-components';
-import {
-  HiOutlineHeart,
-  HiOutlineCheck,
-  HiOutlineShieldCheck,
-} from 'react-icons/hi';
+import { HiPencil, HiOutlineCheck, HiOutlineShieldCheck } from 'react-icons/hi';
 
 export const Container = styled.div`
   padding: 32px;
@@ -28,7 +24,7 @@ export const Row = styled.div`
   }
 `;
 
-export const HeartIcon = styled(HiOutlineHeart)`
+export const EditIcon = styled(HiPencil)`
   width: 28px;
   height: 28px;
   color: var(--color-blue);

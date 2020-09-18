@@ -6,12 +6,25 @@ import { Container, Row, Panel, Column, Gallery, Description } from './styles';
 import SellerInfoCard from './SellerInfoCard';
 import ProductAction from './ProductAction';
 import WarrantyCard from './WarrantyCard';
-import { useProduct } from '../../context/ProductContext';
+import { useProductList } from '../../context/ProductListContext';
+import { useParams } from 'react-router-dom';
 
 const ProductDetails: React.FC = () => {
-  const { data } = useProduct();
-  const product = data;
-  if (!data) {
+  const { productList, error, loading } = useProductList();
+
+  const { id } = useParams<{ id: string }>();
+  const product = productList.find((product) => product.id === id);
+
+  if (error) {
+    return (
+      <PagePattern>
+        <Container>
+          <p>{error}</p>
+        </Container>
+      </PagePattern>
+    );
+  }
+  if (loading) {
     return (
       <PagePattern>
         <Container>
@@ -36,7 +49,7 @@ const ProductDetails: React.FC = () => {
         <Panel>
           <Column>
             <Gallery>
-              <img alt={product.title} src={product.imageUrl} />
+              {product && <img alt={product.title} src={product.imageUrl} />}
             </Gallery>
             <Description>
               <h2>Descrição</h2>
@@ -50,7 +63,7 @@ const ProductDetails: React.FC = () => {
           </Column>
 
           <Column>
-            <ProductAction product={product} />
+            {product && <ProductAction product={product} />}
             <SellerInfoCard />
             <WarrantyCard />
           </Column>

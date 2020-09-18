@@ -11,11 +11,23 @@ import {
   Description,
 } from './styles';
 
-import { Product } from '../../../types/product';
 import { Link } from 'react-router-dom';
 
+interface IProduct {
+  id: string;
+  title: string;
+  imageUrl: string;
+  condition: string;
+  categoryId: string;
+  categories: string[];
+  price: string;
+  installmentsInfo: string;
+  stockAmount: number;
+  soldAmount: number;
+}
+
 interface Props {
-  product: Product;
+  product: IProduct;
 }
 
 const ProductCard: React.FC<Props> = ({ product }) => {

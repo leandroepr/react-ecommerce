@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 
 import {
   Container,
   Condition,
   Row,
-  HeartIcon,
+  EditIcon,
   DispatchTag,
   PriceCard,
   PriceRow,
@@ -19,6 +19,8 @@ import {
 } from './styles';
 import { Product } from '../../../types/product';
 import { useCart } from '../../../context/CartContext';
+import { useCrudProduct } from '../../../context/CrudContext';
+import { useHistory } from 'react-router-dom';
 
 interface Props {
   product: Product;
@@ -56,12 +58,24 @@ const ProductAction: React.FC<Props> = ({ product }) => {
   const isThisProductinCart =
     cartItemList.filter((item) => item.product.id === product.id).length > 0;
 
+  /** Editar produto */
+  const history = useHistory();
+  const { setProduct: setEditingProduct } = useCrudProduct();
+  const handleEditClick = useCallback(() => {
+    const editingProduct = {
+      ...product,
+      categoriesAsString: product.categories.join(', '),
+    };
+    setEditingProduct(editingProduct);
+    history.push('/crud');
+  }, [history, product, setEditingProduct]);
+
   return (
     <Container>
       <Condition>{conditionLabel}</Condition>
       <Row>
         <h1>{title}</h1>
-        <HeartIcon />
+        <EditIcon onClick={handleEditClick} />
       </Row>
       <DispatchTag>Enviando normalmente</DispatchTag>
       <PriceCard>
@@ -77,8 +91,7 @@ const ProductAction: React.FC<Props> = ({ product }) => {
           <div>
             <span className="title">Frete grátis</span>
             <span className="details">Benefício Lorem Ipsum</span>
-            // eslint-disable-next-line jsx-a11y/anchor-is-valid
-            <a href="#" className="more">
+            <a href="/" className="more">
               Ver mais opções
             </a>
           </div>

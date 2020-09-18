@@ -76,19 +76,22 @@
       "id": "roupas",
       "name": "Roupas",
       "displayName": "Roupas para você e toda família",
-      "detail": ""
+      "detail": "",
+      "productList": []
     },
     {
       "id": "calcados",
       "name": "Calçados",
       "displayName": "Calçados elegantes e confortáveis",
-      "detail": ""
+      "detail": "",
+      "productList": []
     },
     {
       "id": "acessorios",
       "name": "Acessórios",
       "displayName": "Acessórios, Maquiagens e muito mais",
-      "detail": ""
+      "detail": "",
+      "productList": []
     }
   ],
   "products": [
@@ -107,7 +110,8 @@
         "Camisetas",
         "Masculino",
         "Curta"
-      ]
+      ],
+      "categoriesAsString": "Roupas, Camisetas, Masculino, Curta"
     },
     {
       "id": "camiseta-hering-0299-original-masculinas-gola-redonda",
@@ -162,7 +166,7 @@
     },
     {
       "id": "5-camiseta-masculina-camisas-slim-voker-100-algodo-atacado",
-      "title": "5 Camiseta Masculina Camisas Slim Voker 100% Algodão Atacado",
+      "title": "6 Camiseta Masculina Camisas Slim Voker 100% Algodão Atacado",
       "imageUrl": "https://http2.mlstatic.com/5-camiseta-masculina-camisas-slim-voker-100-algodo-atacado-D_NQ_NP_855910-MLB41149427249_032020-O.jpg",
       "price": "144.90",
       "installmentsInfo": "em 12x R$ 13,76",
@@ -175,7 +179,8 @@
         "Camisetas",
         "Masculino",
         "Curta"
-      ]
+      ],
+      "categoriesAsString": "Roupas, Camisetas, Masculino, Curta"
     },
     {
       "id": "macaco-macaquinho-curto-feminino-bojo-alcas-botoes-linho",
@@ -299,6 +304,40 @@
       ]
     },
     {
+      "id": "sandalia-rasteira-bonequinha-em-couro-legitimo-linha-confort",
+      "title": "Sandália Rasteira Bonequinha Em Couro Legitimo Linha Confort",
+      "imageUrl": "https://http2.mlstatic.com/D_NQ_NP_774271-MLB41098257399_032020-O.jpg",
+      "price": "89.99",
+      "installmentsInfo": "em 12x R$ 7,50 sem juros",
+      "condition": "Novo",
+      "soldAmount": 372,
+      "stockAmount": 10,
+      "categoryId": "calcados",
+      "categories": [
+        "Calçados",
+        "Sapatos",
+        "Sandálias e Chinelos",
+        "Femilino"
+      ]
+    },
+    {
+      "id": "bota-botinha-feminina-casual-rasteira-charme",
+      "title": "Bota Botinha Feminina Casual Rasteira Charme",
+      "imageUrl": "https://http2.mlstatic.com/D_NQ_NP_980974-MLB41505506820_042020-O.jpg",
+      "price": "99.99",
+      "installmentsInfo": "em 12x R$ 8,33 sem juros",
+      "condition": "Novo",
+      "soldAmount": 109,
+      "stockAmount": 1240,
+      "categoryId": "calcados",
+      "categories": [
+        "Calçados",
+        "Sapatos",
+        "Botas",
+        "Femilino"
+      ]
+    },
+    {
       "id": "paleta-48-sombras-jasmyne-com-espelho",
       "title": "Paleta 48 Sombras Jasmyne Com Espelho",
       "imageUrl": "https://http2.mlstatic.com/paleta-48-sombras-jasmyne-com-espelho-D_NQ_NP_935212-MLB43218287171_082020-O.jpg",
@@ -332,6 +371,42 @@
         "Colares",
         "Corrente",
         "Masculino"
+      ]
+    },
+    {
+      "id": "relogio-champion-feminino-dourado-ouro-18k-com-1-ano-de-garantia-prova-dagua-e-nota-fiscal",
+      "title": "Relógio Champion Feminino Dourado Ouro 18k Com 1 Ano De Garantia Prova D'água E Nota Fiscal",
+      "imageUrl": "https://http2.mlstatic.com/D_NQ_NP_794628-MLB43335048147_092020-O.jpg",
+      "price": "27.90",
+      "installmentsInfo": "em 12x R$ 17,41 sem juros",
+      "condition": "Novo",
+      "soldAmount": 7077,
+      "stockAmount": 120,
+      "categoryId": "acessorios",
+      "categories": [
+        "Acessórios",
+        "Relógios",
+        "De Pulso",
+        "Champion",
+        "Feminino",
+        "Adulto"
+      ]
+    },
+    {
+      "id": "kit-corrente-colar-prata-925-ponto-de-luz-coraco-brincos",
+      "title": "Kit Corrente Colar Prata 925 Ponto De Luz Coração + Brincos",
+      "imageUrl": "https://http2.mlstatic.com/D_NQ_NP_902610-MLB41791985980_052020-O.jpg",
+      "price": "72.90",
+      "installmentsInfo": "em 12x R$ 6,08 sem juros",
+      "condition": "Novo",
+      "soldAmount": 1966,
+      "stockAmount": 103,
+      "categoryId": "acessorios",
+      "categories": [
+        "Acessórios",
+        "Joias e Bijuterias",
+        "Colares",
+        "Feminino"
       ]
     },
     {

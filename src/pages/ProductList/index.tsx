@@ -11,11 +11,11 @@ import {
 import PagePattern from '../../components/PagePattern';
 import ProductCard from './ProductCard';
 import FilterCard from './FilterCard';
-// import { useProductList } from '../../context/ProductListContext';
 import { useLocation } from 'react-router-dom';
 import api from '../../services/api';
+import { useProductList } from '../../context/ProductListContext';
 
-export interface Product {
+interface Product {
   id: string;
   title: string;
   imageUrl: string;
@@ -34,23 +34,15 @@ interface Props {
 }
 
 const ProductList: React.FC<Props> = ({ category }) => {
-  const [productList, setProductList] = useState<Product[]>([]);
+  const { productList, loading, error } = useProductList();
   const [relatedProducts, setRelatedProducts] = useState<string[]>([]);
-  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    async function loadProducts(): Promise<void> {
-      setLoading(true);
-      const response = await api.get('/products');
-      setProductList(response.data);
-      setLoading(false);
-    }
     async function loadRelatedProducts(): Promise<void> {
       const response = await api.get('/relatedProducts');
       setRelatedProducts(response.data);
     }
 
-    loadProducts();
     loadRelatedProducts();
   }, []);
 

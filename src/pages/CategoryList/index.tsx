@@ -12,7 +12,6 @@ import {
 
 const CategoryList: React.FC = () => {
   const { categoryList, productList } = useCategories();
-  // console.log(categoryList);
 
   return (
     <PagePattern>
@@ -35,7 +34,7 @@ const CategoryListCard: React.FC<Props> = ({ categoryList, productList }) => {
         <CategorySection
           key={category.id}
           categoryId={category.id}
-          title={category.name}
+          title={category.displayName}
           detailPath={category.id}
           productList={productList
             .filter((p) => p.categoryId === category.id)

@@ -7,6 +7,7 @@ import ProductDetails from './pages/ProductDetails';
 import Cart from './pages/Cart';
 import CategoryList from './pages/CategoryList';
 import Order from './pages/Order';
+import AddProduct from './pages/AddProduct/intex';
 
 const Routes: React.FC = () => (
   <Switch>
@@ -14,6 +15,7 @@ const Routes: React.FC = () => (
 
     <Route path="/cart" children={<Cart />} />
     <Route path="/order/" children={<Order />} />
+    <Route path="/crud/" children={<AddProduct />} />
 
     <Route path="/roupas/:id" children={<ProductDetails />} />
     <Route path="/calcados/:id" children={<ProductDetails />} />

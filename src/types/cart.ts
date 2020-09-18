@@ -4,6 +4,7 @@ export interface CartItem {
   product: Product;
   amount: number;
 }
+
 export interface Cart {
   cartItemList: CartItem[];
   removeItemFromCart: (id: string) => void;

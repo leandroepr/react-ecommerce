@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import { Container, Section } from './styles';
 
@@ -21,7 +22,7 @@ const WarrantyCard: React.FC = () => {
           </span>
         </div>
 
-        <a href="#">Saiba mais sobre garantia</a>
+        <Link to="#">Saiba mais sobre garantia</Link>
       </Section>
     </Container>
   );

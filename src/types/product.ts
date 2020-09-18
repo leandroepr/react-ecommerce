@@ -5,7 +5,6 @@ export interface Product {
   condition: string;
   categoryId: string;
   categories: string[];
-  description: string;
   price: string;
   installmentsInfo: string;
   stockAmount: number;

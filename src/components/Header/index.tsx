@@ -17,9 +17,11 @@ import {
   CartIcon,
 } from './styles';
 import { Link, useHistory } from 'react-router-dom';
+import { useCart } from '../../context/CartContext';
 
 function Header() {
   const [searchText, setSearchText] = useState('');
+  const { cartItemList } = useCart();
 
   const history = useHistory();
   const searchHandler = () => {
@@ -67,6 +69,7 @@ function Header() {
         <Link to="/roupas">Roupas</Link>
         <Link to="/calcados">Calçados</Link>
         <Link to="/acessorios">Utilitários</Link>
+        <Link to="/crud">CRUD</Link>
       </NavigationWarpper>
 
       <ProfileMenuWarpper>
@@ -85,6 +88,7 @@ function Header() {
         </div>
         <div>
           <Link to="/cart">
+            <span>{cartItemList.length}</span>
             <CartIcon />
           </Link>
         </div>
